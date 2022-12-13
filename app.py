@@ -10,6 +10,11 @@ def get_filename(yt_data):
     return file_name
 
 
+def channel_title(yt_data):
+    yt_channel_name = yt_data.channel_id
+    return yt_channel_name
+
+
 def get_yt_streams(yt_data):
     yt_stream = yt_data.streams.filter(file_extension='mp4')
     return yt_stream
@@ -17,10 +22,8 @@ def get_yt_streams(yt_data):
 
 def download_stream(yt_data):
     stream = yt_data.streams.get_by_itag(22)
-    return stream.download()
+    return stream.download('Downloads/')
 
-
-print(get_yt_streams(YT_VIDEO_DATA))
 
 
 download_stream(YT_VIDEO_DATA)
