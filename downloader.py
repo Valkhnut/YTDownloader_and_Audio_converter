@@ -20,15 +20,17 @@ def choose_quality():
     Enter num from 1 to 6:''')
     quality = int(input())
     try:
-        quality in range(1, 7)
+        QUALITY_SETTINGS[quality]
     except ValueError:
         print("This isn't number!")
     except TypeError:
         print('Try again!')
-    except False:
-        print('You must  enter num in range from 1 to 6! Try again!!!')
+    except KeyError:
+        print("Fatal Error. Try again!")
+    except Exception:
+        print('Another Error. Try again')
     else:
-        yt_itag = QUALITY_SETTINGS[quality]
+        yt_itag = (QUALITY_SETTINGS[quality])
         return yt_itag
 
 
