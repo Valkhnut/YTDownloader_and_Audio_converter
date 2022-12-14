@@ -1,4 +1,4 @@
-QUALITY_SETTINGS = {
+QUALITY_SETTINGS = {  # num: itag
     1: 160,  # (144p) Didn't work in default player
     2: 133,  # (240p) Didn't work in default player
     3: 18,   # (360p)
@@ -18,21 +18,15 @@ def choose_quality():
     6. 1080p
      
     Enter num from 1 to 6:''')
-    quality = int(input())
+    quality = input()
     try:
         QUALITY_SETTINGS[quality]
-    except ValueError:
-        print("This isn't number!")
-    except TypeError:
-        print('Try again!')
     except KeyError:
         print("Fatal Error. Try again!")
-    except Exception:
-        print('Another Error. Try again')
+        choose_quality()
     else:
         yt_itag = (QUALITY_SETTINGS[quality])
         return yt_itag
-
 
 
 def yt_stream_downloader(yt_data):
