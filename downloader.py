@@ -1,10 +1,19 @@
 QUALITY_SETTINGS = {  # num: itag
-    1: 160,  # (144p) Didn't work in default player
-    2: 133,  # (240p) Didn't work in default player
-    3: 18,   # (360p)
-    4: 135,  # (480p) Didn't work in default player
-    5: 22,   # (720p)
-    6: 137,  # (1080p) Didn't work in default player
+    '1': 160,  # (144p) Didn't work in default player
+    '2': 133,  # (240p) Didn't work in default player
+    '3': 18,   # (360p)
+    '4': 135,  # (480p) Didn't work in default player
+    '5': 22,   # (720p)
+    '6': 137,  # (1080p) Didn't work in default player
+}
+
+VIDEO_QUALITY = {  # itag: quality
+    160: '144p',
+    133: '240p',
+    18: '360p',
+    135: '480p',
+    22: '720p',
+    137: '1080p',
 }
 
 
@@ -29,6 +38,9 @@ def choose_quality():
         return yt_itag
 
 
+itag = choose_quality()
+
+
 def yt_stream_downloader(yt_data):
-    stream = yt_data.streams.get_by_itag(choose_quality())
-    return stream.download('Downloads/')
+    stream = yt_data.streams.get_by_itag(itag)
+    return stream.download(f'Downloads/{VIDEO_QUALITY[int(itag)]}')
